@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JSON Schema Validator</title>
+  <meta name="description" content="JSON Schema Draft 7 validator with live error display. Zero dependencies, no build step." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+  <span class="header-title">JSON Schema Validator</span>
+  <div class="header-spacer"></div>
+  <div class="header-controls">
+    <select id="examples-select" class="btn" aria-label="Examples">
+      <!-- Populated by JS -->
+    </select>
+    <button id="theme-btn" class="btn btn-icon" title="Toggle theme" aria-label="Toggle theme">🌙</button>
+    <button id="lang-btn" class="btn" aria-label="Switch language">JA</button>
+  </div>
+</header>
+
+<main>
+  <div class="editor-row">
+    <div class="editor-pane">
+      <label class="editor-label" for="schema-input" data-i18n="schemaLabel">Schema (JSON Schema Draft 7)</label>
+      <textarea
+        id="schema-input"
+        class="code-editor"
+        spellcheck="false"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        placeholder='{ "type": "object" }'
+        aria-label="JSON Schema input"
+      ></textarea>
+    </div>
+    <div class="editor-pane">
+      <label class="editor-label" for="data-input" data-i18n="dataLabel">Data (JSON)</label>
+      <textarea
+        id="data-input"
+        class="code-editor"
+        spellcheck="false"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        placeholder='{ "key": "value" }'
+        aria-label="JSON Data input"
+      ></textarea>
+    </div>
+  </div>
+
+  <section id="result-panel" class="result-panel idle" aria-live="polite" aria-label="Validation result">
+    <div class="result-header">
+      <span class="result-title" data-i18n="validationResult">Validation Result</span>
+      <span id="status-badge" class="status-badge"></span>
+      <span id="error-count" class="error-count"></span>
+      <button id="copy-errors-btn" class="btn" style="display:none" data-i18n="copyErrors">Copy errors</button>
+    </div>
+    <ul id="error-list" class="error-list" role="list" aria-label="Validation errors"></ul>
+  </section>
+</main>
+
+<footer>
+  <a href="https://github.com/sen-ltd/json-schema-validator" target="_blank" rel="noopener">GitHub</a>
+  &nbsp;·&nbsp;
+  <a href="https://sen.ltd" target="_blank" rel="noopener">SEN LLC</a>
+  &nbsp;·&nbsp;
+  JSON Schema Draft 7
+</footer>
+
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

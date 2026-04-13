@@ -1,0 +1,360 @@
+/* ── Design tokens ─────────────────────────────────────────── */
+:root {
+  --bg: #f8f9fa;
+  --surface: #ffffff;
+  --surface2: #f1f3f5;
+  --border: #dee2e6;
+  --text: #212529;
+  --text-muted: #6c757d;
+  --accent: #228be6;
+  --accent-hover: #1971c2;
+  --valid: #2f9e44;
+  --invalid: #e03131;
+  --warn: #f59f00;
+  --valid-bg: #ebfbee;
+  --invalid-bg: #fff5f5;
+  --keyword-color: #7048e8;
+  --path-color: #228be6;
+  --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.04);
+  --radius: 6px;
+  --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
+  --transition: 0.15s ease;
+}
+
+:root.dark {
+  --bg: #1a1b1e;
+  --surface: #25262b;
+  --surface2: #2c2e33;
+  --border: #373a40;
+  --text: #c1c2c5;
+  --text-muted: #909296;
+  --accent: #4dabf7;
+  --accent-hover: #74c0fc;
+  --valid: #69db7c;
+  --invalid: #ff8787;
+  --warn: #ffd43b;
+  --valid-bg: #132b1a;
+  --invalid-bg: #2b1313;
+  --keyword-color: #b197fc;
+  --path-color: #74c0fc;
+}
+
+/* ── Reset ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ── Header ────────────────────────────────────────────────── */
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 52px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow);
+}
+
+.header-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.header-spacer { flex: 1; }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* ── Buttons ────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+  white-space: nowrap;
+}
+
+.btn:hover {
+  background: var(--surface2);
+  border-color: var(--accent);
+}
+
+.btn-icon {
+  padding: 0.3rem 0.5rem;
+  font-size: 1rem;
+  border-radius: var(--radius);
+}
+
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: #fff;
+}
+
+/* ── Select ─────────────────────────────────────────────────── */
+select.btn {
+  padding-right: 1.5rem;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236c757d' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+}
+
+/* ── Main layout ────────────────────────────────────────────── */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ── Editors ────────────────────────────────────────────────── */
+.editor-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  flex: 1;
+  min-height: 0;
+}
+
+.editor-pane {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.editor-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+textarea.code-editor {
+  flex: 1;
+  min-height: 300px;
+  padding: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  resize: vertical;
+  outline: none;
+  tab-size: 2;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  box-shadow: var(--shadow);
+}
+
+textarea.code-editor:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+/* ── Result panel ───────────────────────────────────────────── */
+.result-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: border-color var(--transition);
+}
+
+.result-panel.valid  { border-color: var(--valid); }
+.result-panel.invalid { border-color: var(--invalid); }
+.result-panel.error  { border-color: var(--warn); }
+
+.result-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+}
+
+.result-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.status-badge.valid {
+  background: var(--valid-bg);
+  color: var(--valid);
+}
+
+.status-badge.invalid {
+  background: var(--invalid-bg);
+  color: var(--invalid);
+}
+
+.error-count {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  flex: 1;
+}
+
+/* ── Error list ─────────────────────────────────────────────── */
+.error-list {
+  list-style: none;
+  max-height: 260px;
+  overflow-y: auto;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.error-item {
+  display: grid;
+  grid-template-columns: minmax(120px, 220px) 1fr auto;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  font-size: 0.78rem;
+  font-family: var(--font-mono);
+  transition: background var(--transition);
+}
+
+.error-item:hover {
+  background: color-mix(in srgb, var(--invalid) 8%, var(--surface2));
+}
+
+.error-item.parse-error {
+  border-color: var(--warn);
+  background: color-mix(in srgb, var(--warn) 8%, var(--surface2));
+}
+
+.error-path {
+  color: var(--path-color);
+  font-weight: 600;
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.error-message {
+  color: var(--text);
+  word-break: break-word;
+}
+
+.error-keyword {
+  color: var(--keyword-color);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.result-panel.valid .error-list::after {
+  content: '✓ ' attr(data-msg);
+  display: block;
+  text-align: center;
+  padding: 1rem;
+  color: var(--valid);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* ── Footer ─────────────────────────────────────────────────── */
+footer {
+  text-align: center;
+  padding: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+}
+
+footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+footer a:hover { text-decoration: underline; }
+
+/* ── Scrollbar ──────────────────────────────────────────────── */
+.error-list::-webkit-scrollbar { width: 6px; }
+.error-list::-webkit-scrollbar-track { background: transparent; }
+.error-list::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .editor-row {
+    grid-template-columns: 1fr;
+  }
+
+  .header-title { font-size: 0.85rem; }
+
+  textarea.code-editor { min-height: 200px; }
+
+  .error-item {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  header { gap: 0.5rem; padding: 0 0.5rem; }
+  main { padding: 0.5rem; gap: 0.5rem; }
+  .header-controls { gap: 0.25rem; }
+}
