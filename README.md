@@ -34,3 +34,10 @@ node --test tests/validator.test.js
 ## License
 
 MIT © 2026 SEN LLC (SEN 合同会社)
+
+<!-- sen-publish:links -->
+## Links
+
+- 🌐 Demo: https://sen.ltd/portfolio/json-schema-validator/
+- 📝 dev.to: https://dev.to/sendotltd/writing-a-json-schema-draft-7-validator-from-scratch-8de
+<!-- /sen-publish:links -->
